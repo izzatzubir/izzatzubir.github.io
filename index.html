@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izzat Zubir | Software Engineer & Web Dev</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+    <style>
+
+        /* Base Styles */
+        :root {
+            --hacker-green: #00ff00;
+            --matrix-green: #00cc66;
+            --terminal-bg: #0a0a0a;
+            --dark-bg: #111111;
+            --darker-bg: #080808;
+            --accent-blue: #0066ff;
+            --warning: #ff6600;
+            --error: #ff3333;
+            --text: #e0e0e0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 20px;
+            color: var(--hacker-green);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: var(--hacker-green);
+            border: 1px solid var(--hacker-green);
+            border-radius: 0;
+            transition: var(--transition);
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '>>';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--hacker-green);
+            font-weight: bold;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--hacker-green);
+            text-shadow: 0 0 5px var(--hacker-green);
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--hacker-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--hacker-green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--hacker-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--terminal-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 102, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 102, 0, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .typing-container {
+            margin-bottom: 20px;
+        }
+
+        #typing-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--hacker-green);
+            border-right: 2px solid var(--hacker-green);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 102, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
+        }
+
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--darker-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(0, 255, 0, 0.02) 50%, transparent 100%);
+            z-index: 0;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-text {
+            padding-right: 20px;
+        }
+
+        .code-block {
+            background-color: var(--terminal-bg);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: '// about_me.js';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background-color: var(--terminal-bg);
+            padding: 0 10px;
+            color: var(--warning);
+            font-size: 0.8rem;
+        }
+
+        .code-line {
+            margin-bottom: 5px;
+        }
+
+        .code-comment {
+            color: var(--matrix-green);
+        }
+
+        .code-keyword {
+            color: var(--accent-blue);
+        }
+
+        .code-string {
+            color: var(--warning);
+        }
+
+        .about-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            filter: grayscale(30%);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            filter: grayscale(0%);
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+        }
+
+        /* Experience Section */
+        .experience {
+            background-color: var(--dark-bg);
+            position: relative;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 70% 30%, rgba(0, 102, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(255, 102, 0, 0.03) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--hacker-green), var(--accent-blue));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--terminal-bg);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '>>>';
+            position: absolute;
+            color: var(--hacker-green);
+            font-weight: bold;
+            top: 20px;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -40px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--hacker-green);
+            border: 3px solid var(--dark-bg);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -8px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -8px;
+        }
+
+        .timeline-date {
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 5px;
+        }
+
+        .timeline-company {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--hacker-green);
+        }
+
+        .timeline-position {
+            font-style: italic;
+            color: var(--warning);
+            margin-bottom: 10px;
+        }
+
+        /* Education Section */
+        .education {
+            background-color: var(--darker-bg);
+        }
+
+        .education-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            display: flex;
+            margin-bottom: 40px;
+            background-color: var(--terminal-bg);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .education-icon {
+            width: 80px;
+            background: linear-gradient(135deg, var(--hacker-green), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--terminal-bg);
+            font-size: 1.8rem;
+        }
+
+        .education-content {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .education-degree {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--hacker-green);
+        }
+
+        .education-school {
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 5px;
+        }
+
+        .education-year {
+            color: var(--warning);
+            font-style: italic;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background-color: var(--dark-bg);
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: var(--terminal-bg);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: var(--text);
+            border-radius: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+            color: var(--hacker-green);
+            border-color: var(--hacker-green);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: var(--terminal-bg);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 255, 0, 0.1);
+            border-color: var(--hacker-green);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .portfolio-content {
+            padding: 20px;
+        }
+
+        .portfolio-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--hacker-green);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .portfolio-tag {
+            background-color: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: var(--accent-blue);
+        }
+
+        .portfolio-tag.security {
+            background-color: rgba(255, 102, 0, 0.1);
+            border-color: rgba(255, 102, 0, 0.3);
+            color: var(--warning);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--terminal-bg);
+            color: var(--text);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--hacker-green);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--hacker-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: rgba(0, 255, 0, 0.2);
+            border-color: var(--hacker-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Matrix Rain Background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text {
+                padding-right: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--terminal-bg);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: var(--transition);
+                border-top: 1px solid rgba(0, 255, 0, 0.2);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -40px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .education-item {
+                flex-direction: column;
+            }
+
+            .education-icon {
+                width: 100%;
+                height: 60px;
+            }
+        }
+        /* Local Font Awesome Icons */
+        .fas, .fab, .far {
+            font-family: 'Arial', sans-serif;
+            font-style: normal;
+            font-weight: 900;
+            display: inline-block;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Terminal icon */
+        .fa-terminal::before { content: ">_"; }
+
+        /* GitHub icon */
+        .fa-github::before { content: "GH"; }
+
+        /* LinkedIn icon */
+        .fa-linkedin-in::before { content: "IN"; }
+
+        /* Twitter icon */
+        .fa-twitter::before { content: "TW"; }
+
+        /* Hacker News icon */
+        .fa-hacker-news::before { content: "HN"; }
+
+        /* Graduation cap icon */
+        .fa-graduation-cap::before { content: "🎓"; }
+
+        /* Envelope icon */
+        .fa-envelope::before { content: "✉"; }
+
+        /* Phone icon */
+        .fa-phone::before { content: "📞"; }
+
+        /* Map marker icon */
+        .fa-map-marker-alt::before { content: "📍"; }
+
+        /* Key icon */
+        .fa-key::before { content: "🔑"; }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">Izzat<span>Zubir</span>.dev</a>
+            <div class="mobile-menu">
+                <i class="fas fa-terminal"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">$ cd /home</a></li>
+                <li><a href="#about">$ cat about.txt</a></li>
+                <li><a href="#experience">$ ls experience/</a></li>
+                <li><a href="#education">$ cat education.txt</a></li>
+                <li><a href="#portfolio">$ ./portfolio.sh</a></li>
+                <li><a href="#contact">$ ping contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="typing-container">
+                    <h1 id="typing-text"></h1>
+                </div>
+                <h1>Software Engineer & Web Developer</h1>
+                <p>> Building secure digital tools and protecting systems from threats. Passionate about code, security, and innovative solutions.</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="code-block">
+                        <div class="code-line"><span class="code-keyword">const</span> developer = {</div>
+                        <div class="code-line">&nbsp;&nbsp;name: <span class="code-string">"Izzat Zubir"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;title: <span class="code-string">"Software Engineer"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;location: <span class="code-string">"Penang, Malaysia"</span>,</div>
+                        <div class="code-line">&nbsp;&nbsp;skills: [<span class="code-string">"JavaScript"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"Flask"</span>, <span class="code-string">"Cybersecurity"</span>],</div>
+                        <div class="code-line">&nbsp;&nbsp;passions: [<span class="code-string">"Secure Coding"</span>, <span class="code-string">"Penetration Testing"</span>, <span class="code-string">"Self Hosting"</span>]</div>
+                        <div class="code-line">};</div>
+                    </div>
+                    <p><span class="code-comment">// With over 5 years of experience in software engineering and web development</span></p>
+                    <p>"Physics-trained software engineer transitioning from cryptocurrency research to embedded systems testing, with parallel passion for building astronomical software tools and exploring cybersecurity."</p>
+                </div>
+                <div class="about-image">
+                    <img src="IMG_8328.jpeg" alt="Izzat Zubir" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 - Present</div>
+                        <div class="timeline-company">Quectel</div>
+                        <div class="timeline-position">Software Test Engineer</div>
+                        <p>Running automated tests and ensuring the quality of software products.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - 2024</div>
+                        <div class="timeline-company">Thundersoftware</div>
+                        <div class="timeline-position">Software Engineer</div>
+                        <p>Developed automation scripts for Intel Windows Automation testing and deployment processes.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <div class="timeline-company">Lingkail</div>
+                        <div class="timeline-position">Software Engineer</div>
+                        <p>Built websites and applications while ensuring security best practices were followed.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <div class="timeline-company">iSaham</div>
+                        <div class="timeline-position">Cryptocurrency Analyst and Web Developer</div>
+                        <p>Analysed cryptocurrency market trends and developed web applications for trading and investment education.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">My Portfolio</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">$ ls -la</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="security">Security Tools</button>
+                <button class="filter-btn" data-filter="software">Software</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web" onclick="window.open('https://www.sahabatfalak.com', '_blank', 'noopener')">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Secure E-commerce Platform" class="portfolio-img">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Islamic Astronomy Website</h3>
+                        <p>Full-stack web application for calculating Islamic prayer times and displaying Qibla direction.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Python</span>
+                            <span class="portfolio-tag">Flask</span>
+                            <span class="portfolio-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="security">
+                    <img src="https://images.unsplash.com/photo-1544890225-2f3faec4cd60?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Vulnerability Scanner" class="portfolio-img">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Spyware Website</h3>
+                        <p>A website intended to monitor user activity and collect personal information without consent. For ethical hacking purposes only.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Python</span>
+                            <span class="portfolio-tag security">Security</span>
+                            <span class="portfolio-tag">Flask</span>
+                            <span class="portfolio-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="software">
+                    <img src="https://www.sahabatfalak.com/images/40" alt="Security Dashboard" class="portfolio-img">
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Crescent Live Image Viewer</h3>
+                        <p>Real-time live stacking and image processing software to enhance crescent moon visibility.</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Python</span>
+                            <span class="portfolio-tag">OpenCV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-container">
+                <!-- <div class="education-item">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <div class="education-degree">Master of Science in Cybersecurity</div>
+                        <div class="education-school">Carnegie Mellon University</div>
+                        <div class="education-year">2012 - 2014</div>
+                        <p>Specialized in Network Security and Cryptography. Thesis on "Advanced Persistent Threat Detection Using Machine Learning".</p>
+                    </div>
+                </div> -->
+                <div class="education-item">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <div class="education-degree">Bachelor of Science in Physics with Honours</div>
+                        <div class="education-school">Universiti Sains Malaysia</div>
+                        <div class="education-year">2016 - 2020</div>
+                        <p>1st Class Honours. Minored in Astronomy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Izzat Zubir</h3>
+                    <p>Cybersecurity specialist & full-stack developer focused on building secure digital experiences.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-hacker-news"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="#home">$ cd /home</a></li>
+                        <li><a href="#about">$ cat about.txt</a></li>
+                        <li><a href="#experience">$ ls experience/</a></li>
+                        <li><a href="#education">$ cat education.txt</a></li>
+                        <li><a href="#portfolio">$ ./portfolio.sh</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> izzatzubir@yahoo.com</p>
+                    <p><i class="fas fa-phone"></i> +x (xxx) xxx-xxxx</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Penang, Malaysia</p>
+                    <p><i class="fas fa-key"></i> PGP: 0x1A2B3C4D5E6F7890</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Izzat Zubir. All Rights Reserved. | <span style="color: var(--hacker-green)">Security through obscurity is not security.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Matrix Rain Background
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = "01010101010101010101010101ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]^~";
+        const charArray = chars.split("");
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(10, 10, 10, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Typing effect
+        const typingText = document.getElementById('typing-text');
+        const texts = [
+            "> Hello, World!",
+            "> sudo whoami",
+            "> Software Engineer",
+            "> Web Developer",
+            "> Physicist"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingDelay = 100;
+
+        function type() {
+            const currentText = texts[textIndex];
+
+            if (isDeleting) {
+                typingText.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typingDelay = 50;
+            } else {
+                typingText.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typingDelay = 100;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typingDelay = 1500;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typingDelay = 500;
+            }
+
+            setTimeout(type, typingDelay);
+        }
+
+        // Start typing effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(type, 1000);
+        });
+
+        // Resize canvas when window is resized
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
+
+
